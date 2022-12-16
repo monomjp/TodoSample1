@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model ViewModel
+@{
+    ViewData["Title"] = "TodoItems";
+}
+
+<h1>@Model.UserName さんのタスク一覧</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>タスク</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Todo</td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@item.Id">
+                        <button type="submit" class="btn btn-primary">完了</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="新しいタスク" name="todoName" />
+    </div>
+    <button type="submit" class="btn btn-primary">作成</button>
+</form>
+
